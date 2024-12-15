@@ -30,15 +30,7 @@
       color: #c9c9e3;
     
     }
-    video {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1; /* Sends the video behind the content */
-}
+    
 
    .staking-dashboard, .staking-container {
         max-width: 600px;
@@ -174,7 +166,6 @@
     opacity: 0;
   }
 }
-
 .floating-btn-container {
             position: fixed;
             bottom: 20px;
@@ -203,7 +194,7 @@
             background-color: #fff;
         }
 
-        .floating-btn-container video {
+        .floating-btn-container video1 {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -213,7 +204,8 @@
             font-size: 12px; /* Small font size */            
             font-family: Times New Roman, serif;            
             background: black;
-            position: fixed;
+            position: fixed; /* Fixed to the viewport */
+                              
             bottom: 100px;
             right: 20px;
             border: 1.5px dashed #222;   
@@ -221,6 +213,11 @@
             padding: 15px;
             border-radius: 10px;
             width: 250px;
+            z-index: 1000;       /* Ensure it's on top of other elements */
+    display: block;      /* Ensure it's displayed */
+    visibility: visible;  /* Ensure visibility */
+    opacity: 1;          /* Fully opaque */
+                
             display: none;
             flex-direction: column;
         }
@@ -260,14 +257,38 @@
             cursor: pointer;
             margin-top: 10px;
         }
+        /* Background Video */
+#background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Keeps it behind all other elements */
+}
+
+/* Floating Button Video */
+#floating-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+ .close-btn {
+            background: linear-gradient(
+    135deg, /* Angle for the diagonal light */
+    rgba(72, 92, 92, 0.98) 30%, /* Darker base color */
+    rgba(200, 200, 200, 0.5) 50%, /* Lighter "light" streak */
+    rgba(0, 0, 0, 1) 80% /* Dark color on the other side */
+  );
+  border-radius: 15px; /* Optional for rounded corners */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);         
+  }
+  
   </style>
 </head>
 <body>
-    <!-- Background Video -->
-    <video autoplay muted loop>
-        <source src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/pinterestdownloader.com-1734049676.054739.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
+    
   <div class="staking-dashboard">
       <div class="uid" id="uid"></div>
     <h1>Zypher Staking Dashboard</h1>
@@ -315,15 +336,20 @@
     z-index: 9999;">
 </div>
   </div>
+  <!-- Background Video -->
+<video id="background-video" autoplay muted loop>
+    <source src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/pinterestdownloader.com-1734049676.054739.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
 
-     <div class="floating-btn-container" onclick="toggleMenu()">
-        <div class="video-container5">
-            <video loop muted autoplay>
-                <source src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/pinterestdownloader.com-1734179701.543179.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-    </div>
+<!-- Floating Button Video -->
+<div class="floating-btn-container" onclick="toggleMenu()">
+    <div class="video-container5">
+        <video id="floating-video" loop muted autoplay>
+            <source src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/pinterestdownloader.com-1734179701.543179.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    
 
     <div class="menu-container" id="menu">
         <a href="https://zyperinnovative.github.io/zypher.xyz/zypher3.html">
@@ -348,8 +374,8 @@
             <img src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_2024121421403317518319826899983694.png" alt="Zypher Paper"> Zypher Paper
         </a>
 
-        <div class="close-btn" onclick="toggleMenu()">Close</div>
-    </div>
+        
+    
 <script>
 // Initialize Local Storage Values
 let zypherPoints = JSON.parse(localStorage.getItem("zypherPoints")) || 0;
@@ -563,6 +589,10 @@ function showNotification(message, type = "info", duration = 3000) {
     notificationContainer.removeChild(notification);
   }, duration);
 }
+ function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        }
 </script>
   
 </body>
