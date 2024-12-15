@@ -152,13 +152,13 @@
         margin: 10px 0 0;
         color: #555;
     }
-.floating-btn-container {
+    .floating-btn-container {
             position: fixed;
             bottom: 20px;
             right: 20px;
             z-index: 1000;
-            width: 50px;
-            height: 50px;
+            width: 100px;
+            height: 100px;
             border: 1px dashed #222;   
             background-color: grey;
             border-radius: 30%;
@@ -170,8 +170,8 @@
         }
 
         .video-container5 {
-            width: 50px;
-            height: 50px;
+            width: 100px;
+            height: 100px;
             overflow: hidden;
             border-radius: 30%;
             display: flex;
@@ -190,14 +190,20 @@
             font-size: 12px; /* Small font size */            
             font-family: Times New Roman, serif;            
             background: black;
-            position: fixed;
-            bottom: 100px;
+            position: fixed; /* Fixed to the viewport */
+                              
+            bottom: 140px;
             right: 20px;
             border: 1.5px dashed #222;   
             background-color: black;              box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
             padding: 15px;
             border-radius: 10px;
             width: 250px;
+            z-index: 1000;       /* Ensure it's on top of other elements */
+    display: block;      /* Ensure it's displayed */
+    visibility: visible;  /* Ensure visibility */
+    opacity: 1;          /* Fully opaque */
+                
             display: none;
             flex-direction: column;
         }
@@ -237,6 +243,7 @@
             cursor: pointer;
             margin-top: 10px;
         }
+  
     </style>
 </head>
 <body>
@@ -308,7 +315,8 @@
             <p>Auctions, Staking, Rewards</p>
         </div>
     </div>
-     <div class="floating-btn-container" onclick="toggleMenu()">
+</div>
+<div class="floating-btn-container" onclick="toggleMenu()">
         <div class="video-container5">
             <video loop muted autoplay>
                 <source src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/pinterestdownloader.com-1734179701.543179.mp4" type="video/mp4">
@@ -342,7 +350,7 @@
 
         <div class="close-btn" onclick="toggleMenu()">Close</div>
     </div>
-</div>
+    </div>
 
     <script>
           // Show notification for mobile users
@@ -430,6 +438,10 @@
             document.getElementById('allocation-info').innerText = info;
             document.getElementById('info-container').style.display = "block";
         });
+         function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        }
     </script>
 </body>
 </html>
