@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zypher Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            color: #e1e1e1;
+            line-height: 1.6;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+
+        header {
+            background-color: transparent;
+            padding: 40px 0;
+            text-align: center;
+                    }
+
+        header h1 {
+            font-size: 36px;
+            color: #00bcd4;
+        }
+
+        .content {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section {
+            margin: 40px 0;
+            padding: 30px;
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .section h2 {
+            font-size: 30px;
+            margin-bottom: 20px;
+            color: #00bcd4;
+        }
+
+        .section p {
+            font-size: 18px;
+            color: #e1e1e1;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            background-color: #00bcd4;
+            color: #fff;
+            padding: 15px 30px;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 5px;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #03a9f4;
+        }
+
+        footer {
+            background-color: #1e1e1e;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        footer p {
+            color: #bbb;
+            font-size: 14px;
+        }
+
+        /* Scroll Reveal Effects */
+        .reveal {
+            opacity: 0;
+            transform: translateY(100px);
+            transition: all 1s ease-out;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+         /* Style for the canvas, which stays fixed in the background */
+    #constellation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Ensures the canvas stays behind content */
+    }
+    
+    /* Example of existing styles for your website */
+    .content {
+      position: relative;
+      z-index: 1; /* Keeps your content above the canvas */
+      color: white;
+      padding: 20px;
+      height: 5000px; /* Ensures enough content for scrolling */
+    }
+    .zypher-grid {
+        margin-top: 40px;
+        padding: 30px;
+        background-color: #555;
+        border-radius: 10px;
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 16px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .zypher-grid h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .grid-item {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .grid-item strong {
+        font-size: 18px;
+        color: #333;
+    }
+
+    .grid-item p {
+        font-size: 16px;
+        margin: 10px 0 0;
+        color: #555;
+    }
+    
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Zypher Token: Revolutionizing Digital Asset Auctions</h1>
+    </header>
+
+    <div class="content">
+        <!-- About Zypher Token -->
+        <section class="section reveal" id="section-1">
+            <h2>About Zypher Token</h2>
+            <p>The Zypher Token is the native currency of the Zypher Auction App, a dynamic platform designed to facilitate the buying and selling of digital assets through an innovative auction system. At the core of the Zypher Auction platform, the Zypher Token serves as the primary medium of exchange, enabling seamless transactions between buyers and sellers.</p>
+            <p>Within the Zypher Auction App, the Zypher Token is used to purchase digital assets, participate in bidding, and support the overall growth of the Zypher ecosystem. Users wishing to buy unique digital assets or bid on auctions must use Zypher Tokens, which drives demand for the token and supports its value.</p>
+        </section>
+
+        <!-- Platform Features -->
+        <section class="section reveal" id="section-2">
+            <h2>Platform Features</h2>
+            <p>Buyers can engage in real-time auctions, using their Zypher Tokens to bid on various digital assets, from art to virtual goods and collectibles. As the auctions progress, participants place bids with Zypher Tokens, and the highest bidder at the end of the auction wins the item, transferring the Zypher Tokens to the seller.</p>
+            <p>The Zypher Auction App leverages the Zypher Token not only as a means of transaction but also as a tool for fostering a growing, vibrant marketplace. Through the use of Zypher Tokens, the platform helps to build liquidity, ensuring that users can easily buy and sell assets, participate in auctions, and receive rewards.</p>
+        </section>
+
+        <!-- Future Developments -->
+        <section class="section reveal" id="section-3">
+            <h2>Future Developments</h2>
+            <p>Moreover, the Zypher Token is integrated into the platform’s development and growth initiatives, supporting partnerships, platform enhancements, and ecosystem expansion. Through active use of the token within the app, the Zypher Token will become a cornerstone of the digital asset marketplace, rewarding users and driving future development.</p>
+            <p>The growing adoption of the Zypher Token creates an increasing demand for its use, making it an essential part of the digital asset ecosystem and a promising investment opportunity.</p>
+        </section>
+
+        <!-- Tokenomics and Allocation -->
+        <section class="section reveal" id="section-4">
+            <h2>Tokenomics and Allocation</h2>
+            <p>The total supply of Zypher Tokens is designed to ensure both liquidity and sustainability. The token distribution strategy has been structured to balance the needs of the project and its community.</p>
+            <ul>
+                <li><strong>Airdrop Allocation (30%)</strong>: Tokens allocated to 500k airdrop participants based on activity and engagement.</li>
+                <li><strong>Liquidity Pool (14%)</strong>: Tokens allocated to liquidity pools for stable trading and market support.</li>
+                <li><strong>Development & Ecosystem Growth (14%)</strong>: Funding for app development, ecosystem partnerships, and integration.</li>
+                <li><strong>Team & Advisors (10%)</strong>: Tokens given to team members and advisors for project support and guidance.</li>
+                <li><strong>Marketing & Community Building (10%)</strong>: Funds dedicated to marketing and growing the community through various channels.</li>
+                <li><strong>Insurance Fund (5%)</strong>: Reserved to cover unforeseen risks, hacks, or project failure scenarios.</li>
+                <li><strong>Reserve Fund (5%)</strong>: Held for future project needs or strategic investments.</li>
+                <li><strong>Staking & Rewards (10%)</strong>: Rewards for long-term holders and active participants in staking.</li>
+                <li><strong>Future Airdrop Allocation (5%)</strong>: Tokens reserved for future rounds of airdrops to expand the community.</li>
+                <li><strong>Miscellaneous Allocations (5%)</strong>: For special initiatives, events, and unforeseen development needs.</li>
+            </ul>
+        </section>
+        
+        <div class="zypher-grid">
+    <h2>Zypher Token Details</h2>
+    <div class="grid-container">
+        <div class="grid-item">
+            <strong>Token Type</strong>
+            <p>Utility</p>
+        </div>
+        <div class="grid-item">
+            <strong>Funding Amount</strong>
+            <p>$2 Billion</p>
+        </div>
+        <div class="grid-item">
+            <strong>Token Supply</strong>
+            <p>1,000,000,000 Tokens</p>
+        </div>
+        <div class="grid-item">
+            <strong>Blockchain</strong>
+            <p>Solana</p>
+        </div>
+        <div class="grid-item">
+            <strong>Launch Year</strong>
+            <p>2025</p>
+        </div>
+        <div class="grid-item">
+            <strong>Use Cases</strong>
+            <p>Auctions, Staking, Rewards</p>
+        </div>
+    </div>
+</div>
+</div>
+
+        <!-- Call-to-Action -->
+        <div style="text-align:center;">
+            <a href="#cta" class="cta-button">Join the Zypher Community</a>
+        </div>
+    </div>
+   
+
+    <footer>
+        <p>&copy; 2024 Zypher. All rights reserved.</p>
+    </footer>
+      <canvas id="constellation"></canvas>
+      
+    <script>
+        // Scroll Reveal Effect
+        const revealElements = document.querySelectorAll('.reveal');
+
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('visible');
+                } else {
+                    element.classList.remove('visible');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll(); // Trigger scroll reveal on page load
+  
+    const canvas = document.getElementById("constellation");
+    const ctx = canvas.getContext("2d");
+
+    // Set canvas size to fill the entire screen, including scrolling
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const stars = [];
+    const maxStars = 100; // Number of stars
+    const starSpeed = 0.5;
+
+    // Create star objects
+    for (let i = 0; i < maxStars; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2 + 1,
+        dx: Math.random() * starSpeed - starSpeed / 2,
+        dy: Math.random() * starSpeed - starSpeed / 2,
+      });
+    }
+
+    // Draw a single star
+    function drawStar(star) {
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fillStyle = "white";
+      ctx.fill();
+    }
+
+    // Draw lines between close stars
+    function drawLines() {
+      for (let i = 0; i < stars.length; i++) {
+        for (let j = i + 1; j < stars.length; j++) {
+          const dx = stars[i].x - stars[j].x;
+          const dy = stars[i].y - stars[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 120) {
+            ctx.beginPath();
+            ctx.moveTo(stars[i].x, stars[i].y);
+            ctx.lineTo(stars[j].x, stars[j].y);
+            ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / 120})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    // Update star positions
+    function updateStars() {
+      for (let star of stars) {
+        star.x += star.dx;
+        star.y += star.dy;
+
+        // Bounce off edges
+        if (star.x < 0 || star.x > canvas.width) star.dx *= -1;
+        if (star.y < 0 || star.y > canvas.height) star.dy *= -1;
+      }
+    }
+
+    // Main animation loop
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let star of stars) {
+        drawStar(star);
+      }
+
+      drawLines();
+      updateStars();
+
+      requestAnimationFrame(animate);
+    }
+
+    // Adjust canvas size on resize
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    animate();
+  
+    </script>
+</body>
+</html>
