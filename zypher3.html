@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zypher Innovative</title>
+   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+   
+  <style>
+   body {
+      font-family: 'Orbitron', sans-serif;
+      
+      margin: 0;
+      padding: 0;
+      background-color: black;
+      color: #ecf0f1;
+    }
+
+    header {
+      display: flex;
+  align-items: center;
+  background-color: #1c1c1c;
+  color: white;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      
+          }
+
+    header img {
+      height: 50px;          
+      margin-right: 20px; /* Space between image and text */
+    
+    }
+
+    header h1 {
+      font-size: 12px;
+      text-align: center;
+      align-items:center;
+    }
+    
+    h3{
+        
+        background: linear-gradient(90deg, #9945FF, #14F195);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #c9c9e3;
+    }
+
+    .uid {
+      font-size: 10px;
+      text-align: center;
+      color: #00d1b2;
+      margin-top: 10px;
+    
+    }
+    h4 {
+      font-size: 9px;
+    }
+
+    .container {
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .container2 {
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: auto;
+      background-color: transparent;
+      }
+
+    .dashboard {
+      position: relative;
+      background-color: #1c1c1c;
+      border-radius: 15px;
+      padding: 40px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+      height: 100px; /* Fixed height */
+    }
+
+    .zypher-point,
+    .zypher-exp,
+    .users {
+      position: absolute;
+      color: #ecf0f1;
+    }
+
+    /* Zypher Points - Upper Center */
+    .zypher-point {
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
+    }
+
+    .zypher-point p {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: #00d1b2;
+    }
+
+    /* Zypher Exp - Bottom Left */
+    .zypher-exp {
+      bottom: 20px;
+      left: 20px;
+      text-align: left;
+    }
+
+    .zypher-exp p {
+      font-size: 15px;
+      font-weight: bold;
+      margin-top: 1px;
+      color: #00d1b2;
+    }
+
+    /* Users - Bottom Right */
+    .users {
+      bottom: 20px;
+      right: 20px;
+      text-align: right;
+    }
+
+    .users p {
+      font-size: 15px;
+      font-weight: bold;
+      margin-top: 10px;
+      color: #00d1b2;
+    }
+
+    /* Small info button */
+    .info-btn {
+      font-size: 8px;
+      background: linear-gradient(
+    135deg, /* Angle for the diagonal light */
+    rgba(72, 92, 92, 0.98) 30%, /* Darker base color */
+    rgba(200, 200, 200, 0.5) 50%, /* Lighter "light" streak */
+    rgba(0, 0, 0, 1) 80% /* Dark color on the other side */
+  );
+  border-radius: 15px; /* Optional for rounded corners */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Optional shadow */        
+  
+      color: white;
+      border-radius: 5%;
+      padding: 1px;
+      cursor: pointer;
+      height: 100%;
+      width: 100%;
+      display: inline-block;
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    .info-btn:hover {
+      background-color: #2980b9;
+    }
+
+    /* Custom positioning for each info button */
+    .info-btn-zypher-points {
+      position: absolute;
+      width: 50%;
+      height: 10%;
+      top: 138px;
+      left: calc(10% + 20px); /* Adjusts button position next to Zypher Points */
+    }
+
+    .info-btn-zypher-exp {
+      position: absolute;
+      bottom: -10px;
+      width: 100%;
+      height: 15%;
+      left: calc(1px + 5px); /* Adjusts button position next to Zypher Exp */
+    }
+
+    .info-btn-users {
+      position: absolute;
+      bottom: -10px;
+      width: 250%;
+      height: 15%;
+      right: calc(10px + -20px); /* Adjusts button position next to Users */
+    }
+
+    /* Container2 for spacing around the buttons grid */
+    .container2 {
+      margin: 20px; /* Space around the buttons grid */
+      padding: 10px; /* Inner space */
+      border: 1px solid #ccc; /* Optional border */
+      border-radius: 8px; /* Optional rounded corners */
+      background-color: transparent; /* Optional background color */
+    }
+
+    .buttons {
+      display: grid;
+      background-color: transparent;
+      grid-template-columns: repeat(3, 1fr); /* 3 columns */
+      grid-template-rows: repeat(2, auto); /* 2 rows */
+      gap: 10px; /* Space between buttons */
+    }
+
+    .buttons button {
+      font-size: 12px; /* Small font size */
+      padding: 10px;
+      border: none;
+      font-family: Times New Roman, serif;
+      
+      background: linear-gradient(
+    135deg, /* Angle for the diagonal light */
+    rgba(72, 92, 92, 0.98) 30%, /* Darker base color */
+    rgba(200, 200, 200, 0.5) 50%, /* Lighter "light" streak */
+    rgba(0, 0, 0, 1) 80% /* Dark color on the other side */
+  );
+  border-radius: 15px; /* Optional for rounded corners */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);         
+       color: white;
+      cursor: pointer;
+      text-align: center;
+      
+      
+    }
+
+    .buttons button:hover {
+      background-color: #45a049; /* Slightly darker green on hover */
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      margin-top: 10px;
+      border: 1px solid #34495e;
+      border-radius: 8px;
+      box-sizing: border-box;
+      background-color: #1c1c1c;
+      color: #ecf0f1;
+    }
+    
+    
+     .history-container {
+      margin-top: 30px;
+    }
+    .history-item {
+      margin-bottom: 15px;
+      padding: 10px;
+      color:black;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #555;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+    }
+    .history-item p {
+      margin: 0;
+    }
+    .history-item span {
+      font-weight: bold;
+    }
+    .button-container {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .animated-button {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 300px;
+      height: 50px;
+      align-text:center;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(
+    135deg, /* Angle for the diagonal light */
+    rgba(72, 92, 92, 0.98) 30%, /* Darker base color */
+    rgba(200, 200, 200, 0.5) 50%, /* Lighter "light" streak */
+    rgba(0, 0, 0, 1) 80% /* Dark color on the other side */
+  );
+  border-radius: 15px; /* Optional for rounded corners */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);          
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .animated-button::before {
+  content: "";
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 300%;
+  justify-items:center;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(25, 255, 255, 0.2), rgba(255, 255, 255, 0));
+  transform: rotate(45deg);
+  animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translate(-150%, -150%) rotate(45deg);
+  }
+  100% {
+    transform: translate(150%, 150%) rotate(45deg);
+  }
+}
+
+        .task-section {
+  text-align: center;
+  padding: 20px;
+}
+
+.slideshow-container {
+  position: relative;
+  width: 80%;
+  margin: auto;
+}
+
+.slide {
+  display: none;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.redirect-link {
+  display: inline-block;
+}
+
+.redirect-link img {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.redirect-link img:hover {
+  transform: scale(1.05);
+}
+ /* Pop-up Badge Styles */
+    #popupBadge {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 10;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #popupBadgeContainer {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      text-align: center;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    #popupBadgeVideo {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .badge-image {
+      position: relative;
+      z-index: 2;
+      width: 80px;
+      height: 80px;
+      margin-top: 50%;
+      transform: translateY(-50%);
+    }
+
+    #popupBadgeContainer p {
+      position: relative;
+      z-index: 2;
+      color: white;
+      font-size: 16px;
+      margin-top: -30px;
+    }
+
+    #confirmButton {
+  position: absolute; /* Use absolute positioning */
+  bottom: 10px;       /* Place it near the bottom */
+  left: 50%;          /* Center horizontally */
+  transform: translateX(-50%); /* Adjust for centering */
+  padding: 10px 20px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 2;
+}
+
+    #badgesContainer {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      padding: 20px;
+     
+    }
+
+    .badge-slot {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      border: 1px dashed #222;      
+      overflow: hidden;
+      border-radius: 5px;
+      
+    }
+
+    .badge-slot video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .badge-slot img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      z-index: 1;
+    }
+
+    
+
+/* Style for the emblem */
+#emblem {
+    position: absolute;
+    top: 315px; /* Adjust position as needed */
+    right: 235px; /* Adjust position as needed */
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    z-index: 1;
+     }
+
+#emblem img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+#alert-container {
+    position: fixed;
+    bottom: -50%; /* Start position below the screen */
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background: linear-gradient(
+    135deg, /* Angle for the diagonal light */
+    rgba(72, 92, 92, 0.98) 30%, /* Darker base color */
+    rgba(200, 200, 200, 0.5) 50%, /* Lighter "light" streak */
+    rgba(0, 0, 0, 1) 80% /* Dark color on the other side */
+  );  border-radius: 15px; /* Optional for rounded corners */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Optional shadow */
+    font-weight: bold;
+    color: #00d4ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    transition: bottom 0.5s ease-in-out;
+}
+
+/* Notification container */
+#notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Notification styles */
+.notification {
+    padding: 15px;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #fff;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    animation: fadeInOut 0.5s ease-in-out;
+}
+
+/* Notification types */
+.notification.info {
+    background-color: #007bff; /* Blue */
+}
+
+.notification.success {
+    background-color: #28a745; /* Green */
+}
+
+.notification.error {
+    background-color: #dc3545; /* Red */
+}
+
+/* Fade-in and fade-out animation */
+@keyframes fadeInOut {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.floating-btn-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border: 1px dashed #222;   
+            background-color: grey;
+            border-radius: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-container5 {
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+            border-radius: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+        }
+
+        .floating-btn-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .menu-container {
+            font-size: 12px; /* Small font size */            
+            font-family: Times New Roman, serif;            
+            background: black;
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            border: 1.5px dashed #222;   
+            background-color: black;              box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            width: 250px;
+            display: none;
+            flex-direction: column;
+        }
+
+        .menu-container a {
+            text-decoration: none;
+            background: linear-gradient(90deg, #9945FF, #14F195);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;            
+            color: #007bff;
+            margin: 10px 0;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-container img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .close-btn {
+            background: linear-gradient(
+    135deg, /* Angle for the diagonal light */
+    rgba(72, 92, 92, 0.98) 30%, /* Darker base color */
+    rgba(200, 200, 200, 0.5) 50%, /* Lighter "light" streak */
+    rgba(0, 0, 0, 1) 80% /* Dark color on the other side */
+  );
+  border-radius: 15px; /* Optional for rounded corners */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);         
+  
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_20241213154957822503107164972715653.png" alt="Zypher Logo">
+    <h1>Zypher Innovative: "Stage 1 - Zypher Points & Blockchain Integration."</h1>                  
+    <div class="uid" id="uid"></div>
+              
+  </header>
+ 
+
+<div id="popupBadge">
+  <div id="popupBadgeContainer">
+    <video id="popupBadgeVideo" autoplay muted loop></video>
+    <img id="popupBadgeImage" class="badge-image" src="" alt="Badge">
+    <p>Congratulations! You just obtained <strong id="tribeName"></strong> badge.</p>
+    <button id="confirmButton">Confirm</button>
+  </div>
+</div>
+   
+<div id="badgesContainer">
+  <div class="badge-slot" id="badge1"></div>
+  <div class="badge-slot" id="badge2"></div>
+  <div class="badge-slot" id="badge3"></div>
+  
+</div>
+
+    
+   <!-- Main Dashboard -->
+    <div class="container">
+    <div class="dashboard">
+        
+        
+      <!-- Zypher Points - Upper Center -->
+      <div class="zypher-point">          
+        <h3>Zypher Points</h3>  
+            <p id="zypher-points">0</p>
+        <span class="info-btn info-btn-zypher-points" onclick="showNotification('Zypher Points is used for staking to gain Zypher EXP.')">About Points</span>
+      </div>
+
+      <!-- Zypher Exp - Bottom Left -->
+      <div class="zypher-exp">
+        <h4>Zypher Exp</h4>
+        <p id="zypher-exp">0</p>
+        <span class="info-btn info-btn-zypher-exp" onclick="showNotification('Zypher EXP is used to upgrade mining and also convertible to Zypher Token for Auction CENTERE and AIRDROP.')">About Exp</span>
+      </div>
+
+      <!-- Users - Bottom Right -->
+      <div class="users">
+        <h4>Users</h4>
+        <p id="totalTransactions">0</p>
+        
+        <span class="info-btn info-btn-users" onclick="showNotification('The total users who deposited to their accounts, we only need 500K participants.')">About Users</span>
+      </div>
+    </div>
+
+    <!-- Container2 for Buttons -->
+    <div class="container2">
+      <div class="buttons">
+        <button id="buy-btn">Buy Points</button>
+        <button id="migrate-btn">Migrate Points</button>
+        <button id="tokenomics-btn">Zypher Tokenomics</button>
+        <button id="paper-btn">Zypher Paper</button>
+        <button id="about-btn">About Zypher</button>
+        <button id="instruction-btn">How to buy</button>
+      </div>
+    </div>
+     
+     <div class="button-container">
+  <a href="https://firebasestorage.googleapis.com/v0/b/bitfi-9fdc9.appspot.com/o/Zypher%2Fzyphertransaction.html?alt=media&token=afe6d873-26dc-4896-9703-bf59ee39b086" class="animated-button">
+    <span class="typing-text">Verify Transaction </span>
+    <div class="light-line"></div>
+  </a>
+</div>   
+
+     <div class="button-container">
+  <a href="https://firebasestorage.googleapis.com/v0/b/bitfi-9fdc9.appspot.com/o/Zypher%2Fzypherstaking2.html?alt=media&token=dcfb07a9-eb45-4a50-a44d-847e432405db" class="animated-button">
+    <span class="typing-text">Stake your points to obtain Zypher Exp</span>
+    <div class="light-line"></div>
+  </a>
+</div>   
+
+<br></br>
+  <div id="referral-container" style="overflow:hidden; border: 1px solid #ccc; padding: 20px; border-radius: 8px; width: 255px;">
+  <p id="referral-link"></p>
+  <button id="copy-button" style="padding: 5px 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+    Copy Link
+  </button>
+  <p id="notification" style="margin-top: 10px; color: green;"></p>
+  <p style="font-family: Times New Roman, serif;
+  font-size:12%;">*keep sharing your referrals will be reflected on TGE. Referrals have high rewards.</p>
+</div>
+     
+     <div id="task-section" class="task-section">
+  <div class="slideshow-container">
+    <div class="slide" data-code="task1">
+      <a href="https://x.com/ZypherInnov?t=vQ4kpQeaElcjSeUWoekT8Q&s=09" class="redirect-link" target="_blank">
+        <img src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/img_20241213_2146566692296354277559672.jpg" alt="Slide 1">
+      </a>
+    </div>
+    <div class="slide" data-code="task2">
+      <a href="https://example.com/task2" class="redirect-link" target="_blank">
+        <img src="image2.jpg" alt="Slide 2">
+      </a>
+    </div>
+    <div class="slide" data-code="task3">
+      <a href="https://example.com/task3" class="redirect-link" target="_blank">
+        <img src="image3.jpg" alt="Slide 3">
+      </a>
+    </div>
+    <div class="slide" data-code="task4">
+      <a href="https://example.com/task4" class="redirect-link" target="_blank">
+        <img src="image4.jpg" alt="Slide 4">
+      </a>
+    </div>
+    <div class="slide" data-code="task5">
+      <a href="https://example.com/task5" class="redirect-link" target="_blank">
+        <img src="image5.jpg" alt="Slide 5">
+      </a>
+    </div>
+    <div class="slide" data-code="task6">
+      <a href="https://example.com/task6" class="redirect-link" target="_blank">
+        <img src="image6.jpg" alt="Slide 6">
+      </a>
+    </div>
+    <div class="slide" data-code="task7">
+      <a href="https://example.com/task7" class="redirect-link" target="_blank">
+        <img src="image7.jpg" alt="Slide 7">
+      </a>
+    </div>
+  </div>
+</div>
+     
+     <div class="history-container">
+      <h3>Transaction History</h3>
+      <div id="transaction-history"></div>
+    </div>
+  </div>
+     
+     <div id="notification-container"></div>
+     </div>
+     </div>
+     <div class="floating-btn-container" onclick="toggleMenu()">
+        <div class="video-container5">
+            <video loop muted autoplay>
+                <source src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/pinterestdownloader.com-1734179701.543179.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <div class="menu-container" id="menu">
+        <a href="https://your-link-home">
+            <img src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_20241214213826328840913998397089882.png" alt="Home"> Home
+        </a>
+         <a href="https://your-link-staking">
+            <img src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_20241214214058682509573467930242699.png" alt="Staking"> Staking
+        </a>
+        <a href="https://your-link-verify">
+            <img src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_20241214214202385484788099614823299.png" alt="Verify Transactions"> Verify Transactions
+        </a>
+        <a href="https://your-link-about">
+            <img src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_20241214213850133313101383797765430.png" alt="About Zypher"> About Zypher
+        </a>
+        <a href="https://your-link-tokenomics">
+            <img src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_2024121421395013656808775319520160.png" alt="Tokenomics"> Tokenomics
+        </a>
+        <a href="https://your-link-roadmap">
+            <img src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_20241214213916564575655908187155872.png" alt="Roadmap"> Roadmap
+        </a>
+        <a href="https://your-link-zypher-paper">
+            <img src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_2024121421403317518319826899983694.png" alt="Zypher Paper"> Zypher Paper
+        </a>
+        
+        <div class="close-btn" onclick="toggleMenu()">Close</div>
+    </div>
+    
+  <script>
+      // Function to generate random UID
+    const generateUID = () => {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let uid = '';
+      for (let i = 0; i < 6; i++) {
+        uid += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return uid;
+    };
+
+    // Retrieve UID from localStorage or generate new one
+    const getUID = () => {
+      let uid = localStorage.getItem('uid');
+      if (!uid) {
+        uid = generateUID();
+        localStorage.setItem('uid', uid);
+      }
+      return uid;
+    };
+
+    // Display UID
+    const displayUID = () => {
+      const uid = getUID();
+      document.getElementById('uid').innerText = `UID: ${uid}`;
+    };
+
+    // Initialize and display UID
+    displayUID();
+
+     
+    // Initialize local storage
+    const getLocalData = (key, defaultValue) => JSON.parse(localStorage.getItem(key)) || defaultValue;
+
+    let zypherPoints = getLocalData("zypherPoints", 0);
+    let zypherExp = getLocalData("zypherExp", 0);
+    let users = getLocalData("users", 0);
+
+    // Update Dashboard
+    const updateDashboard = () => {
+      document.getElementById("zypher-points").innerText = zypherPoints;
+      document.getElementById("zypher-exp").innerText = zypherExp;
+         };
+    updateDashboard();
+
+    // Save to local storage
+    const saveData = () => {
+      localStorage.setItem("zypherPoints", JSON.stringify(zypherPoints));
+      localStorage.setItem("zypherExp", JSON.stringify(zypherExp));
+      localStorage.setItem("users", JSON.stringify(users));
+    };
+
+   
+    document.getElementById("tokenomics-btn").addEventListener("click", () => {
+      window.location.href = "https://firebasestorage.googleapis.com/v0/b/bitfi-9fdc9.appspot.com/o/Zypher%2Fzypherallocationsystem.html?alt=media&token=68cadd26-df77-4c6b-b3b9-7f4576d3a1e2";
+    });
+
+    document.getElementById("paper-btn").addEventListener("click", () => {
+      window.location.href = "https://firebasestorage.googleapis.com/v0/b/bitfi-9fdc9.appspot.com/o/Zypher%2Fzypherwhitepaper.html?alt=media&token=d3b2ce4c-f13c-42e1-a1a9-4a3aaa033cc4";
+    });
+
+    document.getElementById("about-btn").addEventListener("click", () => {
+      window.location.href = "https://firebasestorage.googleapis.com/v0/b/bitfi-9fdc9.appspot.com/o/Zypher%2Fzyphersecretinfo.html?alt=media&token=957ea58c-468d-4afe-800d-baaf4469f6c6";
+    });
+    
+    document.getElementById("instruction-btn").addEventListener("click", () => {
+      window.location.href = "https://firebasestorage.googleapis.com/v0/b/bitfi-9fdc9.appspot.com/o/test52.html?alt=media&token=5110f593-2854-4b4c-89b7-dc9b95a53415";
+    });
+    
+    
+    
+    
+    // Fetch transaction history from local storage
+    let transactionHistory = JSON.parse(localStorage.getItem("transactionHistory")) || [];
+
+    // Update Transaction History display
+    const updateTransactionHistory = () => {
+      const historyContainer = document.getElementById("transaction-history");
+      historyContainer.innerHTML = ""; // Clear previous content
+
+      // Display the 5 most recent transactions
+      const recentTransactions = transactionHistory.slice(0, 5);
+
+      recentTransactions.forEach(transaction => {
+        const transactionDiv = document.createElement("div");
+        transactionDiv.classList.add("history-item");
+
+        transactionDiv.innerHTML = `
+          <p><span>Deposited:</span> $${transaction.usdAmount} | <span>Received:</span> ${transaction.zypherPoints} Zypher Points | <span>Total Zypher Points:</span> ${transaction.totalPoints}</p>
+        `;
+
+        historyContainer.appendChild(transactionDiv);
+      });
+    };
+
+    // Clear transactions older than 48 hours
+    const clearOldTransactions = () => {
+      const now = Date.now();
+      transactionHistory = transactionHistory.filter(
+        transaction => now - transaction.timestamp <= 48 * 60 * 60 * 1000
+      );
+      localStorage.setItem("transactionHistory", JSON.stringify(transactionHistory));
+    };
+
+    // Add a transaction (for testing purposes)
+    const addTransaction = (usdAmount, zypherPoints, totalPoints) => {
+      const newTransaction = {
+        usdAmount,
+        zypherPoints,
+        totalPoints,
+        timestamp: Date.now(),
+      };
+      transactionHistory.unshift(newTransaction);
+      localStorage.setItem("transactionHistory", JSON.stringify(transactionHistory));
+      updateTransactionHistory();
+    };
+
+    // Initial setup
+    clearOldTransactions();
+    updateTransactionHistory();
+
+    // Example: Add a transaction for testing
+    // Uncomment the line below to simulate adding a transaction
+    // addTransaction(100, 200, 1200);
+
+    // Automatically update and clear history every hour
+    setInterval(() => {
+      clearOldTransactions();
+      updateTransactionHistory();
+    }, 60 * 60 * 1000); // 1 hour interval
+    document.addEventListener("DOMContentLoaded", function () {
+  const slides = document.querySelectorAll(".slide");
+  let currentSlide = 0;
+  const storageKey = "zypherTasks";
+  const zypherPointsKey = "zypherPoints";
+
+  // Retrieve stored tasks and Zypher points
+  let tasks = JSON.parse(localStorage.getItem(storageKey)) || {};
+  let zypherPoints = JSON.parse(localStorage.getItem(zypherPointsKey)) || 0;
+
+  // Function to show the current slide
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.display = i === index ? "block" : "none";
+    });
+
+    const code = slides[index].getAttribute("data-code");
+    if (tasks[code]?.status === "claimed") {
+      slides[index].querySelector("a").style.pointerEvents = "none";  // Disable link if points claimed
+    }
+  }
+
+  // Click handler for the redirect link and points logic
+  slides.forEach(slide => {
+    const link = slide.querySelector("a");
+    link.addEventListener("click", function (e) {
+      const code = slide.getAttribute("data-code");
+      if (!tasks[code] || tasks[code]?.status !== "claimed") {
+        // Add Zypher Points (only if not claimed yet)
+        zypherPoints += 10;
+        localStorage.setItem(zypherPointsKey, JSON.stringify(zypherPoints));
+
+        // Mark task as claimed
+        tasks[code] = { status: "claimed" };
+        localStorage.setItem(storageKey, JSON.stringify(tasks));
+      }
+    });
+  });
+
+  // Auto change slides every 5 seconds
+  setInterval(() => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }, 5000);
+
+  // Show initial slide
+  showSlide(currentSlide);
+});
+
+ const tribes = [
+    { name: "Igniscry", image: "https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_20241213143322273012544733606653875.png", video: "https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/pinterestdownloader.com-1734072183.087867.mp4" },
+    { name: "Aetherflame", image: "https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_20241213135806997378885802509086022.png", video: "https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/pinterestdownloader.com-1734049824.986793.mp4" },
+    { name: "Emberglace", image: "https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_2024121314132939621640016517231016.png", video: "https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/pinterestdownloader.com-1734070942.953301.mp4" }
+  ];
+
+  const popupBadge = document.getElementById('popupBadge');
+  const tribeNameElement = document.getElementById('tribeName');
+  const popupBadgeImage = document.getElementById('popupBadgeImage');
+  const popupBadgeVideo = document.getElementById('popupBadgeVideo');
+  const badge1 = document.getElementById('badge1');
+
+  const userTribe = JSON.parse(localStorage.getItem('userTribe'));
+
+  function assignTribe() {
+    if (!userTribe) {
+      const randomTribe = tribes[Math.floor(Math.random() * tribes.length)];
+      localStorage.setItem('userTribe', JSON.stringify(randomTribe));
+      return randomTribe;
+    }
+    return userTribe;
+  }
+
+  function showPopup(tribe) {
+    tribeNameElement.textContent = tribe.name;
+    popupBadgeImage.src = tribe.image;
+    popupBadgeVideo.src = tribe.video;
+    popupBadge.style.display = 'flex';
+  }
+
+  function displayBadge(tribe) {
+    const badgeSlot = document.getElementById('badge1');
+    const videoElement = document.createElement('video');
+    const badgeImg = document.createElement('img');
+
+    videoElement.src = tribe.video;
+    videoElement.autoplay = true;
+    videoElement.muted = true;
+    videoElement.loop = true;
+
+    badgeImg.src = tribe.image;
+
+    badgeSlot.appendChild(videoElement);
+    badgeSlot.appendChild(badgeImg);
+  }
+
+  document.getElementById('confirmButton').addEventListener('click', () => {
+    popupBadge.style.display = 'none';
+  });
+
+  const assignedTribe = assignTribe();
+  if (!userTribe) {
+    showPopup(assignedTribe);
+  }
+  displayBadge(assignedTribe);
+
+  
+  // Replace 'yourwebsite.com' with your actual website link
+const websiteLink = "https://t.me/ZyperInnovative_bot";
+const uid = localStorage.getItem("uid") || "defaultUID"; // Replace 'defaultUID' if no UID is found
+const referralLink = `${websiteLink}=ref/${uid}`;
+const referralMessage = `Dive with me on an amazing adventure in Zypher Airdrop! Earn Zypher Exp and get rewarded!. [${referralLink}]`;
+
+// Populate referral link in the container
+document.getElementById("referral-link").textContent = referralLink;
+
+// Button and notification elements
+const copyButton = document.getElementById("copy-button");
+const notification = document.getElementById("notification");
+
+// Check local storage for button state
+if (localStorage.getItem("buttonState") === "calculating") {
+  copyButton.textContent = "Calculating...";
+  copyButton.disabled = false; // Allow clicking while in "Calculating" state
+}
+
+// Copy button click event
+copyButton.addEventListener("click", () => {
+  if (copyButton.textContent === "Calculating...") {
+    // Copy the referral message and link to the clipboard
+    navigator.clipboard.writeText(referralMessage).then(() => {
+      notification.textContent = "Referral link copied!";
+    });
+  } else {
+    // First click: change button state to "Calculating..."
+    copyButton.textContent = "Calculating...";
+    localStorage.setItem("buttonState", "calculating");
+
+    // Notify user and copy the referral message
+    setTimeout(() => {
+      navigator.clipboard.writeText(referralMessage).then(() => {
+        notification.textContent =
+          "Your referrals will be shown on TGE. Keep sharing for rewards from referral is 1:5 token.";
+      });
+    }, 500);
+  }
+});
+
+async function fetchTotalTransactions(apiKey, rootWallet) {
+    const endpoint = `https://api.helius.xyz/v0/addresses/${rootWallet}/transactions?api-key=${apiKey}`;
+    try {
+        const response = await fetch(endpoint);
+        const transactions = await response.json();
+
+        console.log(transactions); // Log the API response to inspect its structure
+
+        // Count the total number of transactions
+        const totalTransactions = transactions.length;
+
+        // Format the total transaction count
+        const formattedTransactions = formatNumber(totalTransactions);
+
+        // Update the DOM with the formatted transaction count
+        document.getElementById("totalTransactions").textContent = ` ${formattedTransactions}`;
+
+        console.log(`Total transactions count: ${totalTransactions}`);
+    } catch (error) {
+        console.error("Error fetching transactions:", error);
+        document.getElementById("totalTransactions").textContent = "0";
+    }
+}
+
+// Helper function to format numbers
+function formatNumber(number) {
+    if (number >= 1_000_000) {
+        return (number / 1_000_000).toFixed(1).replace(/\.0$/, "") + "M";
+    } else if (number >= 1_000) {
+        return (number / 1_000).toFixed(1).replace(/\.0$/, "") + "k";
+    }
+    return number.toString();
+}
+
+function checkLogin() {
+    // Simulate a login check (replace this with actual authentication logic)
+    const isLoggedIn = true; // Set to true when user logs in
+    if (isLoggedIn) {
+        const apiKey = "944a3332-20cf-47be-9390-6ca28d0e3999"; // Replace with your real API key
+        const rootWallet = "G3pqBoPrdS72ZYrD5umgsuMWx3sUhsCsmuC8PWgjxoLW"; // Replace with the root wallet address
+
+        // Fetch total transactions when user logs in
+        fetchTotalTransactions(apiKey, rootWallet);
+    }
+}
+
+// Check login and fetch data on page load
+window.addEventListener("load", () => {
+    checkLogin(); // Call login check to fetch new data if needed
+});
+
+
+// Helper function to display notifications
+function showNotification(message, type = "info", duration = 3000) {
+    const notificationContainer = document.getElementById("notification-container");
+
+    // Create a notification element
+    const notification = document.createElement("div");
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+
+    // Append the notification to the container
+    notificationContainer.appendChild(notification);
+
+    // Remove the notification after the specified duration
+    setTimeout(() => {
+        if (notificationContainer.contains(notification)) {
+            notificationContainer.removeChild(notification);
+        }
+    }, duration);
+}
+
+// Replace all alert calls
+
+
+// Buttons
+document.getElementById("buy-btn").addEventListener("click", () => {
+    const depositAddress = "G3pqBoPrdS72ZYrD5umgsuMWx3sUhsCsmuC8PWgjxoLW"; // Replace with your actual deposit address
+
+    // Copy to clipboard
+    navigator.clipboard.writeText(depositAddress).then(() => {
+        showNotification("Deposit Address Copied Successfully. Send at least any amount of SOLANA then go to verify transaction.");
+    }).catch(err => {
+        console.error("Failed to copy text: ", err);
+    });
+});
+
+document.getElementById("migrate-btn").addEventListener("click", () => {
+    showNotification("Migration Starts in Stage 2.");
+});
+
+document.getElementById("badge1").addEventListener("click", () => {
+    showNotification(`You're in the ${assignedTribe.name} tribe`);
+});
+
+document.getElementById("badge2").addEventListener("click", () => {
+    showNotification("Maniac Badge will be obtainable soon!");
+});
+
+document.getElementById("badge3").addEventListener("click", () => {
+    showNotification("Dominant Faction badge will be obtainable soon!");
+});
+
+
+
+// Additional code
+document.addEventListener("DOMContentLoaded", function () {
+    // Example notification for DOM content loaded
+    showNotification("Welcome to Zypher!", "success");
+});
+
+function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        }
+
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zypher Roadmap</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Header Section */
+        header {
+            background: linear-gradient(90deg, #00FFFF, #BB86FC);
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.2rem;
+        }
+
+        /* Roadmap Section */
+        .roadmap {
+            padding: 50px 20px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: #BB86FC;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 20px;
+            background: #1E1E1E;
+            border-radius: 10px;
+            width: 45%;
+            margin: 20px 0;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 10px;
+            height: 10px;
+            background: #BB86FC;
+            border-radius: 50%;
+            border: 2px solid #fff;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -5%;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -5%;
+        }
+
+        .timeline-item h3 {
+            margin: 0 0 10px;
+            color: #00FFFF;
+        }
+
+        .timeline-item p {
+            margin: 0;
+        }
+
+        /* Footer Section */
+        footer {
+            background: #1E1E1E;
+            padding: 20px;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+            color: #A9A9A9;
+        }
+        /* Style for the canvas, which stays fixed in the background */
+    #constellation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Ensures the canvas stays behind content */
+    }
+    
+    /* Example of existing styles for your website */
+    .content {
+      position: relative;
+      z-index: 1; /* Keeps your content above the canvas */
+      
+      padding: 20px;
+      height: 4100px; /* Ensures enough content for scrolling */
+    }
+    /* Ensure the body fills the screen and allows scrolling */
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: auto;
+      background: black;
+      position: relative; /* Keeps other content above the canvas */
+      min-height: 100vh; /* Ensures content is at least as tall as the screen */
+    }
+
+    /* Style for the canvas, which stays fixed in the background */
+    #constellation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Ensures the canvas stays behind content */
+    }
+    
+    /* Example of existing styles for your website */
+    .content {
+      position: relative;
+      z-index: 1; /* Keeps your content above the canvas */
+      color: white;
+      padding: 20px;
+      height: 2000px; /* Ensures enough content for scrolling */
+    }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Zypher Roadmap</h1>
+        <p>Innovating the Future with Blockchain Technology</p>
+    </header>
+
+    <!-- Roadmap -->
+    <section class="roadmap">
+        <div class="timeline">
+
+            <div class="timeline-item">
+                <h3>Q1 2024</h3>
+                <p>Token Development and Audit on Solana Blockchain.</p>
+                <p>Launch of the Zypher Token Sale.</p>
+                <p>Community Airdrops and Beta Testing.</p>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Q2 2024</h3>
+                <p>Full Launch of Zypher Auction Platform.</p>
+                <p>Liquidity Pools and Staking Mechanisms.</p>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Q3 2024</h3>
+                <p>Expansion of Partnerships.</p>
+                <p>Community Governance System Rollout.</p>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Q4 2024</h3>
+                <p>Introduction of Future Airdrops.</p>
+                <p>Auction Feature Enhancements.</p>
+            </div>
+            
+            <div class="timeline-item">
+                <h3>2025 and Beyond</h3>
+                <p>Continuous Optimization and Global Expansion.</p>
+            </div>
+
+        </div>
+    </section>
+     
+      <canvas id="constellation"></canvas>
+</div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Zypher | Empowering Blockchain Innovation</p>
+    </footer>
+<script>
+    // Detect scroll and gradually reveal content
+const hiddenElements = document.querySelectorAll('.hidden');
+
+const revealOnScroll = () => {
+    const triggerBottom = window.innerHeight * 0.85;
+
+    hiddenElements.forEach((element) => {
+        const box = element.getBoundingClientRect();
+        if (box.top < triggerBottom) {
+            element.classList.add('visible');
+        } else {
+            element.classList.remove('visible');
+        }
+    });
+};
+
+window.addEventListener('scroll', revealOnScroll);
+
+const canvas = document.getElementById("constellation");
+    const ctx = canvas.getContext("2d");
+
+    // Set canvas size to fill the entire screen, including scrolling
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const stars = [];
+    const maxStars = 100; // Number of stars
+    const starSpeed = 0.5;
+
+    // Create star objects
+    for (let i = 0; i < maxStars; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2 + 1,
+        dx: Math.random() * starSpeed - starSpeed / 2,
+        dy: Math.random() * starSpeed - starSpeed / 2,
+      });
+    }
+
+    // Draw a single star
+    function drawStar(star) {
+      ctx.beginPath();
+      ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+      ctx.fillStyle = "white";
+      ctx.fill();
+    }
+
+    // Draw lines between close stars
+    function drawLines() {
+      for (let i = 0; i < stars.length; i++) {
+        for (let j = i + 1; j < stars.length; j++) {
+          const dx = stars[i].x - stars[j].x;
+          const dy = stars[i].y - stars[j].y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 120) {
+            ctx.beginPath();
+            ctx.moveTo(stars[i].x, stars[i].y);
+            ctx.lineTo(stars[j].x, stars[j].y);
+            ctx.strokeStyle = `rgba(255, 255, 255, ${1 - distance / 120})`;
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    // Update star positions
+    function updateStars() {
+      for (let star of stars) {
+        star.x += star.dx;
+        star.y += star.dy;
+
+        // Bounce off edges
+        if (star.x < 0 || star.x > canvas.width) star.dx *= -1;
+        if (star.y < 0 || star.y > canvas.height) star.dy *= -1;
+      }
+    }
+
+    // Main animation loop
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (let star of stars) {
+        drawStar(star);
+      }
+
+      drawLines();
+      updateStars();
+
+      requestAnimationFrame(animate);
+    }
+
+    // Adjust canvas size on resize
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    animate();
+</script>
+</body>
+
+</html>

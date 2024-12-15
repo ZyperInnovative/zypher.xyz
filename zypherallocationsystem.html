@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zypher Token Allocation</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color:white;
+            
+            
+            header {
+      display: flex;
+  align-items: center;
+  background-color: #1c1c1c;
+  color: white;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+     width :251%;
+          }
+
+    header img {
+      height: 50px;          
+      margin-right: 20px; /* Space between image and text */
+    
+    }
+
+    header h1 {
+      font-size: 70px;
+      text-align: center;
+      align-items:center;
+    }
+
+    .uid {
+      font-size: 10px;
+      text-align: center;
+      color: #00d1b2;
+      margin-top: 10px;
+      
+        }
+        h1 {
+            margin-top: 50px;
+            font-size: 36px;
+        }
+        #pie-chart {
+            width: 85%;
+            height: 650px;
+            margin: auto;
+            padding-top: 50px;
+        }
+        .container {
+            margin-top: 30px;
+            background-color: #f4f4f4;
+            padding: 30px;
+            border-radius: 10px;
+            width: 250%;
+            margin-left: auto;
+            margin-right: auto;
+            display: none;
+            font-size: 16px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        .allocation-info {
+            line-height: 1.6;
+            text-align: left;
+            font-size: 18px;
+        }
+        .container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .zypher-info {
+            margin-top: 40px;
+            padding: 30px;
+            background-color: transparent;
+            border-radius: 10px;
+            width:80%;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 16px;
+            text-align: left;
+        }
+        .zypher-info h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            width:300%;
+        }
+        .zypher-info p {
+            font-size: 18px;
+            line-height: 1.8;
+            width: 300%;
+        }
+        
+        .notification {
+            position: fixed;
+            top: 15px;
+            left: 20%;
+            transform: translateX(-50%);
+            background-color: #ffcc00;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #000;
+            z-index: 1000;
+            display: none;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .zypher-grid {
+        margin-top: 40px;
+        padding: 30px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 16px;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .zypher-grid h2 {
+        font-size: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .grid-item {
+        background-color: #ffffff;
+        border-radius: 8px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .grid-item strong {
+        font-size: 18px;
+        color: #333;
+    }
+
+    .grid-item p {
+        font-size: 16px;
+        margin: 10px 0 0;
+        color: #555;
+    }
+    </style>
+</head>
+<body>
+    
+    <header>
+    <img src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_20241213154957822503107164972715653.png" alt="Zypher Logo">
+    <h1>TOKENOMICS</h1>                  
+    <div class="uid" id="uid"></div>
+              
+  </header>
+    <h1>Zypher Token Allocation Distribution</h1>
+    <div class="notification" id="zoom-notification">
+        Please zoom out to view the full array
+    </div>
+    <div id="pie-chart"></div>
+
+    <div class="container" id="info-container">
+        <h2>Allocation Information</h2>
+        <p id="allocation-info" class="allocation-info"></p>
+    </div>
+
+    <div class="zypher-info">
+        <h2>About Zypher Token</h2>
+        <p>
+            The <strong>Zypher Token</strong> is the native currency of the Zypher Auction App, a dynamic platform designed to facilitate the buying and selling of digital assets through an innovative auction system. At the core of the Zypher Auction platform, the Zypher Token serves as the primary medium of exchange, enabling seamless transactions between buyers and sellers.
+        </p>
+        <p>
+            Within the Zypher Auction App, the Zypher Token is used to purchase digital assets, participate in bidding, and support the overall growth of the Zypher ecosystem. Users wishing to buy unique digital assets or bid on auctions must use Zypher Tokens, which drives demand for the token and supports its value.
+        </p>
+        <p>
+            Buyers can engage in real-time auctions, using their Zypher Tokens to bid on various digital assets, from art to virtual goods and collectibles. As the auctions progress, participants place bids with Zypher Tokens, and the highest bidder at the end of the auction wins the item, transferring the Zypher Tokens to the seller.
+        </p>
+        <p>
+            The Zypher Auction App leverages the Zypher Token not only as a means of transaction but also as a tool for fostering a growing, vibrant marketplace. Through the use of Zypher Tokens, the platform helps to build liquidity, ensuring that users can easily buy and sell assets, participate in auctions, and receive rewards.
+        </p>
+        <p>
+            Moreover, the Zypher Token is integrated into the platform’s development and growth initiatives, supporting partnerships, platform enhancements, and ecosystem expansion. Through active use of the token within the app, the Zypher Token will become a cornerstone of the digital asset marketplace, rewarding users and driving future development.
+        </p>
+        <p>
+            The growing adoption of the Zypher Token creates an increasing demand for its use, making it an essential part of the digital asset ecosystem and a promising investment opportunity.
+        </p>
+    </div>
+        
+        <div class="zypher-grid">
+    <h2>Zypher Token Details</h2>
+    <div class="grid-container">
+        <div class="grid-item">
+            <strong>Token Type</strong>
+            <p>Utility</p>
+        </div>
+        <div class="grid-item">
+            <strong>Funding Amount</strong>
+            <p>$2 Billion</p>
+        </div>
+        <div class="grid-item">
+            <strong>Token Supply</strong>
+            <p>1,000,000,000 Tokens</p>
+        </div>
+        <div class="grid-item">
+            <strong>Blockchain</strong>
+            <p>Solana</p>
+        </div>
+        <div class="grid-item">
+            <strong>Launch Year</strong>
+            <p>2025</p>
+        </div>
+        <div class="grid-item">
+            <strong>Use Cases</strong>
+            <p>Auctions, Staking, Rewards</p>
+        </div>
+    </div>
+</div>
+
+    <script>
+          // Show notification for mobile users
+        function showZoomNotification() {
+            const isMobile = /Mobi|Android/i.test(navigator.userAgent); // Check if user is on a mobile device
+            const notification = document.getElementById('zoom-notification');
+
+            if (isMobile) {
+                // Show notification
+                notification.style.display = 'block';
+
+                // Hide the notification after 5 seconds
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 5000);
+            }
+        }
+
+        // Call the function on page load
+        document.addEventListener('DOMContentLoaded', showZoomNotification);
+        
+        
+    var data = [{
+        values: [600, 280, 280, 200, 200, 100, 100, 200, 100, 100], // Updated values for $2B funding
+        labels: [
+            "Airdrop Allocation (30%)",
+            "Liquidity Pool (14%)",
+            "Development & Ecosystem Growth (14%)",
+            "Team & Advisors (10%)",
+            "Marketing & Community Building (10%)",
+            "Insurance Fund (5%)",
+            "Reserve Fund (5%)",
+            "Staking & Rewards (10%)",
+            "Future Airdrop Allocation (5%)",
+            "Miscellaneous Allocations (5%)"
+        ],
+        type: 'pie',
+        hole: 0.4,
+        hoverinfo: 'label+percent',
+        textinfo: 'label+percent',
+        textposition: 'outside',
+        insidetextfont: {
+            size: 10,
+            color: '#ffffff'
+        },
+        outsidetextfont: {
+            size: 12,
+            color: '#000000'
+        },
+        showlegend: true,
+    }];
+
+    var layout = {
+        title: "Zypher Token Allocation Distribution",
+        height: 650,
+        width: 900,
+        margin: {t: 50, b: 50, l: 50, r: 50},
+        font: {size: 14},
+        hovermode: 'closest',
+        paper_bgcolor: '#f0f0f0',
+    };
+
+    Plotly.newPlot('pie-chart', data, layout);
+
+    var allocationInfo = {
+        "Airdrop Allocation (30%)": "This portion is allocated to 500k airdrop participants based on activity and engagement. ($600M tokens)",
+        "Liquidity Pool (14%)": "Tokens allocated to liquidity pools for stable trading and market support. ($280M tokens)",
+        "Development & Ecosystem Growth (14%)": "Funding for app development, ecosystem partnerships, and integration. ($280M tokens)",
+        "Team & Advisors (10%)": "Tokens given to team members and advisors for project support and guidance. ($200M tokens)",
+        "Marketing & Community Building (10%)": "Funds dedicated to marketing and growing the community through various channels. ($200M tokens)",
+        "Insurance Fund (5%)": "Reserved to cover unforeseen risks, hacks, or project failure scenarios. ($100M tokens)",
+        "Reserve Fund (5%)": "Held for future project needs or strategic investments. ($100M tokens)",
+        "Staking & Rewards (10%)": "Rewards for long-term holders and active participants in staking. ($200M tokens)",
+        "Future Airdrop Allocation (5%)": "Tokens reserved for future rounds of airdrops to expand the community. ($100M tokens)",
+        "Miscellaneous Allocations (5%)": "For special initiatives, events, and unforeseen development needs. ($100M tokens)"
+    };
+
+        
+        // Event handler to display information when a slice is clicked
+        document.getElementById('pie-chart').on('plotly_click', function(data){
+            var label = data.points[0].label;
+            var info = allocationInfo[label];
+
+            // Display the info container with the corresponding allocation info
+            document.getElementById('allocation-info').innerText = info;
+            document.getElementById('info-container').style.display = "block";
+        });
+    </script>
+</body>
+</html>

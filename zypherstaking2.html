@@ -1,0 +1,448 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zypher Staking Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+     body {
+        font-family: 'Orbitron', sans-serif;
+        
+        background: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+        color:white;
+    }
+
+    h1, h2 {
+        text-align: center;
+        color: white;
+        background: linear-gradient(90deg, #9945FF, #14F195);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #c9c9e3;
+    
+    }
+    video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1; /* Sends the video behind the content */
+}
+
+   .staking-dashboard, .staking-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        color:white;
+        border: 2px solid grey;
+        background: linear-gradient(
+    135deg, /* Angle for the diagonal light */
+    rgba(72, 92, 92, 0.98) 30%, /* Darker base color */
+    rgba(200, 200, 200, 0.5) 50%, /* Lighter "light" streak */
+    rgba(0, 0, 0, 1) 80% /* Dark color on the other side */
+  );
+  border-radius: 15px; /* Optional for rounded corners */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Optional shadow */        
+      }
+
+    .dashboard-item {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+    }
+
+    button {
+        width: 100%;
+        padding: 10px;
+        background: #007BFF;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    button:disabled {
+        background: #cccccc;
+    }
+
+    .slider-container {
+        margin: 20px 0;
+    }
+
+    #stakeSlider {
+        width: 100%;
+    }
+
+    .multiplier-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .multiplier {
+        padding: 20px;
+        border: 2px solid grey;
+        background: linear-gradient(
+    135deg, /* Angle for the diagonal light */
+    rgba(72, 92, 92, 0.98) 30%, /* Darker base color */
+    rgba(200, 200, 200, 0.5) 50%, /* Lighter "light" streak */
+    rgba(0, 0, 0, 1) 80% /* Dark color on the other side */
+  );
+  border-radius: 15px; /* Optional for rounded corners */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Optional shadow */        
+  
+        cursor: pointer;
+        text-align: center;
+        
+    }
+
+    .multiplier.active {
+        background: #007BFF;
+        color: #fff;
+        border: 2px solid white;
+    }
+
+    #confirmButton {
+        background: yellow;
+        color:black;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Optional shadow */        
+        
+    }
+    .uid {
+        font-size: 14px;
+        text-align: center;
+        color: #00d1b2;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+    /* Notification container */
+#notification-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 300px;
+  z-index: 9999;
+}
+
+/* Notification styles */
+.notification {
+  background-color: #4caf50; /* Default success color */
+  color: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: 'Orbitron', sans-serif;
+  animation: slide-in 0.3s ease-out, fade-out 0.3s ease-in 3s forwards;
+}
+
+/* Error notification override */
+.notification.error {
+  background-color: #ff4c4c; /* Error color */
+}
+
+/* Slide-in animation */
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Fade-out animation */
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+  </style>
+</head>
+<body>
+    <!-- Background Video -->
+    <video autoplay muted loop>
+        <source src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/pinterestdownloader.com-1734049676.054739.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+  <div class="staking-dashboard">
+      <div class="uid" id="uid"></div>
+    <h1>Zypher Staking Dashboard</h1>
+    <div class="dashboard-item">
+         <h3>Zypher Points</h3>
+        <p id="zypher-points">0</p>
+        </div>
+    <div class="dashboard-item">
+      <h3>Total Staked:</h3>
+      <p id="totalStaked">0</p>
+    </div>
+    <div class="dashboard-item">
+      <h3>Zypher Exp Staking:</h3>
+      <p id="zypherExpStaking">0</p>
+    </div>
+    <button id="claimButton" disabled>Claim</button>
+  </div>
+
+  <div class="staking-container">
+    <h2>Start Staking</h2>
+    <div class="slider-container">
+      <label for="stakeSlider">Stake Percentage:</label>
+      <input type="range" id="stakeSlider" min="10" max="100" step="15" value="10">
+      <span id="sliderValue">10%</span>
+    </div>
+   </div>
+   
+   <h3>Select Multiplier</h3>
+    <div class="multiplier-grid">                  
+      <button class="multiplier" data-multiplier="1.25" data-cost="0">1.25x (Free)</button>
+      <button class="multiplier" data-multiplier="2.5" data-cost="50">2.5x (-50 Zypher Points)</button>
+      <button class="multiplier" data-multiplier="3.5" data-cost="150">3.5x (-150 Zypher Points)</button>
+      <button class="multiplier" data-multiplier="5.5" data-cost="550">5.5x (-550 Zypher Points)</button>
+      </div>
+      </div>
+    
+    <button id="confirmButton">Confirm</button>
+  </div>
+  
+  <div id="notification-container" style="
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    z-index: 9999;">
+</div>
+  </div>
+<script>
+// Initialize Local Storage Values
+let zypherPoints = JSON.parse(localStorage.getItem("zypherPoints")) || 0;
+let zypherExp = JSON.parse(localStorage.getItem("zypherExp")) || 0;
+let zypherExpStaking = JSON.parse(localStorage.getItem("zypherExpStaking")) || 0;
+let totalStaked = JSON.parse(localStorage.getItem("totalStaked")) || 0;
+let stakingActive = JSON.parse(localStorage.getItem("stakingActive")) || false;
+let lastStakedTime = JSON.parse(localStorage.getItem("lastStakedTime")) || null;
+
+// Update Dashboard
+function updateDashboard() {
+  document.getElementById("zypher-points").innerText = zypherPoints;
+  document.getElementById("totalStaked").textContent = totalStaked.toFixed(2);
+  document.getElementById("zypherExpStaking").textContent = zypherExpStaking.toFixed(4);
+
+  const elapsedSeconds = stakingActive ? Math.floor((Date.now() - lastStakedTime) / 1000) : 0;
+  const remainingTime = 86400 - elapsedSeconds;
+
+  if (remainingTime > 0) {
+    document.getElementById("claimButton").disabled = true;
+    document.getElementById("claimButton").innerText = `Claim in ${formatTime(remainingTime)}`;
+  } else {
+    document.getElementById("claimButton").disabled = false;
+    document.getElementById("claimButton").innerText = "Claim";
+  }
+}
+
+// Save to Local Storage
+function saveData() {
+  localStorage.setItem("zypherPoints", JSON.stringify(zypherPoints));
+  localStorage.setItem("zypherExp", JSON.stringify(zypherExp));
+  localStorage.setItem("zypherExpStaking", JSON.stringify(zypherExpStaking));
+  localStorage.setItem("totalStaked", JSON.stringify(totalStaked));
+  localStorage.setItem("stakingActive", JSON.stringify(stakingActive));
+  localStorage.setItem("lastStakedTime", JSON.stringify(lastStakedTime));
+}
+
+// Format time as HH:MM:SS
+function formatTime(seconds) {
+  const hrs = Math.floor(seconds / 3600).toString().padStart(2, "0");
+  const mins = Math.floor((seconds % 3600) / 60).toString().padStart(2, "0");
+  const secs = (seconds % 60).toString().padStart(2, "0");
+  return `${hrs}:${mins}:${secs}`;
+}
+
+document.getElementById("confirmButton").addEventListener("click", () => {
+  if (zypherPoints <= 0) {
+    showNotification("Not enough Zypher Points to Stake.");
+    return;
+  }
+
+  if (stakingActive) {
+    showNotification("You're already staking.");
+    return;
+  }
+
+  const activeMultiplier = document.querySelector(".multiplier.active");
+  if (!activeMultiplier) {
+    showNotification("Please select a multiplier.");
+    return;
+  }
+
+  const cost = parseInt(activeMultiplier.dataset.cost, 10);
+  const selectedMultiplier = parseFloat(activeMultiplier.dataset.multiplier);
+
+  if (cost > zypherPoints) {
+    showNotification("Insufficient Zypher Points!");
+    return;
+  }
+
+  const stakedAmount = (stakePercentage / 100) * zypherPoints;
+  zypherPoints -= cost;
+  totalStaked += stakedAmount;
+  zypherExpStaking = 0; // Reset accrued staking EXP
+  stakingActive = true;
+  lastStakedTime = Date.now();
+
+  // Save multiplier and staking amount for interest calculation
+  localStorage.setItem("selectedMultiplier", JSON.stringify(selectedMultiplier));
+  localStorage.setItem("stakedAmount", JSON.stringify(stakedAmount));
+
+  saveData();
+  updateDashboard();
+});
+
+// Claim Rewards
+document.getElementById("claimButton").addEventListener("click", () => {
+  const elapsedSeconds = Math.floor((Date.now() - lastStakedTime) / 1000);
+
+  if (!stakingActive || elapsedSeconds < 86400) {
+    showNotification("You can only claim after 24 hours.");
+    return;
+  }
+
+  zypherExp += zypherExpStaking;
+  zypherExpStaking = 0;
+  stakingActive = false;
+
+  saveData();
+  updateDashboard();
+});
+
+// Accrue Interest
+setInterval(() => {
+  if (stakingActive) {
+    const elapsedSeconds = Math.floor((Date.now() - lastStakedTime) / 1000);
+
+    if (elapsedSeconds <= 86400) {
+      const stakedAmount = JSON.parse(localStorage.getItem("stakedAmount"));
+      const selectedMultiplier = JSON.parse(localStorage.getItem("selectedMultiplier"));
+      const totalInterest = stakedAmount * (selectedMultiplier - 1);
+
+      const interestPerSecond = totalInterest / 86400; // Calculate interest accrued per second
+      zypherExpStaking += interestPerSecond; // Accrue fractional interest per second
+
+      saveData();
+      updateDashboard();
+    }
+  }
+}, 1000); // Update every second
+
+// Slider Update
+document.getElementById("stakeSlider").addEventListener("input", (e) => {
+  stakePercentage = parseInt(e.target.value, 10);
+  document.getElementById("sliderValue").textContent = `${stakePercentage}%`;
+});
+
+// Multiplier Selection
+document.querySelectorAll(".multiplier").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".multiplier").forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+  });
+});
+
+// Initial Dashboard Update
+updateDashboard();
+
+// Function to generate random UID
+    const generateUID = () => {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      let uid = '';
+      for (let i = 0; i < 6; i++) {
+        uid += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return uid;
+    };
+
+    // Retrieve UID from localStorage or generate new one
+    const getUID = () => {
+      let uid = localStorage.getItem('uid');
+      if (!uid) {
+        uid = generateUID();
+        localStorage.setItem('uid', uid);
+      }
+      return uid;
+    };
+
+    // Display UID
+    const displayUID = () => {
+      const uid = getUID();
+      document.getElementById('uid').innerText = `UID: ${uid}`;
+    };
+
+    // Initialize and display UID
+    displayUID();
+    
+    // Accrue missed interest on page load
+function accrueMissedInterest() {
+  if (stakingActive) {
+    const elapsedSeconds = Math.floor((Date.now() - lastStakedTime) / 1000);
+    const stakedAmount = JSON.parse(localStorage.getItem("stakedAmount"));
+    const selectedMultiplier = JSON.parse(localStorage.getItem("selectedMultiplier"));
+    const totalInterest = stakedAmount * (selectedMultiplier - 1);
+
+    const interestPerSecond = totalInterest / 86400; // Calculate interest per second
+    const missedInterest = Math.min(elapsedSeconds, 86400) * interestPerSecond; // Cap at 24 hours
+
+    zypherExpStaking += missedInterest; // Accrue missed interest
+    saveData(); // Save updated values
+  }
+}
+
+// Load and apply state on page load
+window.addEventListener("load", () => {
+  accrueMissedInterest(); // Calculate missed interest if staking was active
+  updateDashboard(); // Update UI with latest values
+});
+
+function showNotification(message, type = "info", duration = 3000) {
+  const notificationContainer = document.getElementById("notification-container");
+
+  // Create a notification element
+  const notification = document.createElement("div");
+  notification.style = `
+    background-color: ${type === "error" ? "#FF4C4C" : "#4CAF50"};
+    color: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: 'Orbitron', sans-serif;
+  `;
+  notification.textContent = message;
+
+  // Append the notification to the container
+  notificationContainer.appendChild(notification);
+
+  // Remove the notification after the specified duration
+  setTimeout(() => {
+    notificationContainer.removeChild(notification);
+  }, duration);
+}
+</script>
+  
+</body>
+</html>
