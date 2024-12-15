@@ -703,7 +703,7 @@
 </div>   
 
 <br></br>
-  <div id="referral-container" style="overflow:hidden; border: 1px solid #ccc; padding: 20px; border-radius: 8px; width: 255px;">
+  <div id="referral-container" style="overflow:hidden; border: 1px solid #ccc; padding: 20px; border-radius: 8px; width: 255px; font-size:15%;">
   <p id="referral-link"></p>
   <button id="copy-button" style="padding: 5px 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
     Copy Link
@@ -1039,8 +1039,8 @@
   // Replace 'yourwebsite.com' with your actual website link
 const websiteLink = "https://t.me/ZyperInnovative_bot";
 const uid = localStorage.getItem("uid") || "defaultUID"; // Replace 'defaultUID' if no UID is found
-const referralLink = `${websiteLink}`;
-const referralMessage = `Dive with me on an amazing adventure in Zypher Airdrop! Earn Zypher Exp and get rewarded!. [${referralLink}]`;
+const referralLink = `${websiteLink}=ref/${uid}`;
+const referralMessage = `Dive with me on an amazing adventure in Zypher Airdrop! Earn Zypher Exp and get rewarded!. [${websiteLink}]`;
 
 // Populate referral link in the container
 document.getElementById("referral-link").textContent = referralLink;
