@@ -113,7 +113,7 @@
     color: #00e676;  /* Styling the signature text */
     font-weight: bold;
   }
-.floating-btn-container {
+  .floating-btn-container {
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -151,7 +151,8 @@
             font-size: 12px; /* Small font size */            
             font-family: Times New Roman, serif;            
             background: black;
-            position: fixed;
+            position: fixed; /* Fixed to the viewport */
+                              
             bottom: 100px;
             right: 20px;
             border: 1.5px dashed #222;   
@@ -159,6 +160,11 @@
             padding: 15px;
             border-radius: 10px;
             width: 250px;
+            z-index: 1000;       /* Ensure it's on top of other elements */
+    display: block;      /* Ensure it's displayed */
+    visibility: visible;  /* Ensure visibility */
+    opacity: 1;          /* Fully opaque */
+                
             display: none;
             flex-direction: column;
         }
@@ -198,6 +204,7 @@
             cursor: pointer;
             margin-top: 10px;
         }
+  
   </style>
 </head>
 <body>
@@ -215,7 +222,9 @@
       <h3>Transaction History</h3>
       <div id="transaction-history"></div>
     </div>
-     <div class="floating-btn-container" onclick="toggleMenu()">
+    <footer>Powered by ZypherTech</footer>
+  </div>
+<div class="floating-btn-container" onclick="toggleMenu()">
         <div class="video-container5">
             <video loop muted autoplay>
                 <source src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/pinterestdownloader.com-1734179701.543179.mp4" type="video/mp4">
@@ -249,11 +258,7 @@
 
         <div class="close-btn" onclick="toggleMenu()">Close</div>
     </div>
-    <footer>Powered by ZypherTech</footer>
-  </div>
-
-
-
+    </div>
   <script>
     // Initialize state variables
     let zypherPoints = 0;
@@ -421,6 +426,11 @@
 
     // Initialize data on window load
     window.onload = loadData;
+     function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        }
   </script>
+  
 </body>
 </html>
