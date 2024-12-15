@@ -36,7 +36,7 @@
 
         /* Roadmap Section */
         .roadmap {
-            padding: 50px 20px;
+            padding: 50px 50px;
         }
 
         .timeline {
@@ -85,7 +85,7 @@
         }
 
         .timeline-item:nth-child(odd)::after {
-            right: -5%;
+            right: 10%;
         }
 
         .timeline-item:nth-child(even)::after {
@@ -158,7 +158,7 @@
       padding: 20px;
       height: 2000px; /* Ensures enough content for scrolling */
     }
-.floating-btn-container {
+    .floating-btn-container {
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -196,7 +196,8 @@
             font-size: 12px; /* Small font size */            
             font-family: Times New Roman, serif;            
             background: black;
-            position: fixed;
+            position: fixed; /* Fixed to the viewport */
+                              
             bottom: 100px;
             right: 20px;
             border: 1.5px dashed #222;   
@@ -204,6 +205,11 @@
             padding: 15px;
             border-radius: 10px;
             width: 250px;
+            z-index: 1000;       /* Ensure it's on top of other elements */
+    display: block;      /* Ensure it's displayed */
+    visibility: visible;  /* Ensure visibility */
+    opacity: 1;          /* Fully opaque */
+                
             display: none;
             flex-direction: column;
         }
@@ -243,6 +249,8 @@
             cursor: pointer;
             margin-top: 10px;
         }
+  
+    
     </style>
 </head>
 
@@ -293,8 +301,7 @@
      
       <canvas id="constellation"></canvas>
 </div>
-
-     <div class="floating-btn-container" onclick="toggleMenu()">
+<div class="floating-btn-container" onclick="toggleMenu()">
         <div class="video-container5">
             <video loop muted autoplay>
                 <source src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/pinterestdownloader.com-1734179701.543179.mp4" type="video/mp4">
@@ -328,12 +335,12 @@
 
         <div class="close-btn" onclick="toggleMenu()">Close</div>
     </div>
+    
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2024 Zypher | Empowering Blockchain Innovation</p>
     </footer>
-
 <script>
     // Detect scroll and gradually reveal content
 const hiddenElements = document.querySelectorAll('.hidden');
@@ -436,6 +443,10 @@ const canvas = document.getElementById("constellation");
     });
 
     animate();
+     function toggleMenu() {
+            const menu = document.getElementById("menu");
+            menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+        }
 </script>
 </body>
 
