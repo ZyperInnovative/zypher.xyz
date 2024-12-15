@@ -145,6 +145,92 @@
       padding: 20px;
       height: 2000px; /* Ensures enough content for scrolling */
     }
+
+.floating-btn-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border: 1px dashed #222;   
+            background-color: grey;
+            border-radius: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-container5 {
+            width: 50px;
+            height: 50px;
+            overflow: hidden;
+            border-radius: 30%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+        }
+
+        .floating-btn-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .menu-container {
+            font-size: 12px; /* Small font size */            
+            font-family: Times New Roman, serif;            
+            background: black;
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            border: 1.5px dashed #222;   
+            background-color: black;              box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            width: 250px;
+            display: none;
+            flex-direction: column;
+        }
+
+        .menu-container a {
+            text-decoration: none;
+            background: linear-gradient(90deg, #9945FF, #14F195);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;            
+            color: #007bff;
+            margin: 10px 0;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-container img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .close-btn {
+            background: linear-gradient(
+    135deg, /* Angle for the diagonal light */
+    rgba(72, 92, 92, 0.98) 30%, /* Darker base color */
+    rgba(200, 200, 200, 0.5) 50%, /* Lighter "light" streak */
+    rgba(0, 0, 0, 1) 80% /* Dark color on the other side */
+  );
+  border-radius: 15px; /* Optional for rounded corners */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);         
+  
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
@@ -234,6 +320,40 @@
     </footer>
    <canvas id="constellation"></canvas>
 </div>
+      <div class="floating-btn-container" onclick="toggleMenu()">
+        <div class="video-container5">
+            <video loop muted autoplay>
+                <source src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/pinterestdownloader.com-1734179701.543179.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <div class="menu-container" id="menu">
+        <a href="https://zyperinnovative.github.io/zypher.xyz/zypher3.html">
+            <img src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_20241214213826328840913998397089882.png" alt="Home"> Home
+        </a>
+         <a href="https://zyperinnovative.github.io/zypher.xyz/zypherstaking2.html">
+            <img src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_20241214214058682509573467930242699.png" alt="Staking"> Staking
+        </a>
+        <a href="https://zyperinnovative.github.io/zypher.xyz/zyphertransaction.html">
+            <img src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_20241214214202385484788099614823299.png" alt="Verify Transactions"> Verify Transactions
+        </a>
+        <a href="https://zyperinnovative.github.io/zypher.xyz/zyphersecretinfo.html">
+            <img src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_20241214213850133313101383797765430.png" alt="About Zypher"> About Zypher
+        </a>
+        <a href="https://zyperinnovative.github.io/zypher.xyz/zypherallocationsystem.html">
+            <img src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_2024121421395013656808775319520160.png" alt="Tokenomics"> Tokenomics
+        </a>
+        <a href="https://zyperinnovative.github.io/zypher.xyz/zypherroadmap.html">
+            <img src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_20241214213916564575655908187155872.png" alt="Roadmap"> Roadmap
+        </a>
+        <a href="https://zyperinnovative.github.io/zypher.xyz/zypherwhitepaper.html">
+            <img src="https://donationsanctuary.wordpress.com/wp-content/uploads/2024/12/retouch_2024121421403317518319826899983694.png" alt="Zypher Paper"> Zypher Paper
+        </a>
+
+        <div class="close-btn" onclick="toggleMenu()">Close</div>
+    </div>
 
 <script >
     
