@@ -349,81 +349,72 @@
 
     // Fetch transaction and process it
     document.getElementById("fetch-btn").addEventListener("click", async () => {
-      const transactionHash = document.getElementById("transaction-hash").value.trim();
-      if (!transactionHash) {
-        showError("Please enter a valid transaction hash!");
-        return;
-      }
+  const transactionHash = document.getElementById("transaction-hash").value.trim();
+  if (!transactionHash) {
+    showError("Please enter a valid transaction hash!");
+    return;
+  }
 
-      if (transactionHistory.find(transaction => transaction.hash === transactionHash)) {
-        showError("Transaction Hash already calculated!");
-        return;
-      }
+  if (transactionHistory.find(transaction => transaction.hash === transactionHash)) {
+    showError("Transaction Hash already calculated!");
+    return;
+  }
 
-      const solPriceUrl = "https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd";
+  const solPriceUrl = "https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd";
 
-      try {
-        const [transactionResponse, priceResponse] = await Promise.all([
-          fetch(RPC_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              jsonrpc: "2.0",
-              id: 1,
-              method: "getTransaction",
-              params: [transactionHash, { encoding: "json", commitment: "confirmed" }],
-            }),
-          }),
-          fetch(solPriceUrl),
-        ]);
+  try {
+    const [transactionResponse, priceResponse] = await Promise.all([
+      fetch(RPC_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          jsonrpc: "2.0",
+          id: 1,
+          method: "getTransaction",
+          params: [transactionHash, { encoding: "json", commitment: "confirmed" }],
+        }),
+      }),
+      fetch(solPriceUrl),
+    ]);
 
-        const transactionData = await transactionResponse.json();
-        const priceData = await priceResponse.json();
-        const solPrice = priceData.solana.usd;
+    const transactionData = await transactionResponse.json();
+    const priceData = await priceResponse.json();
+    const solPrice = priceData.solana.usd;
 
-        if (!transactionData.result) throw new Error("Transaction not found.");
+    if (!transactionData.result) throw new Error("Transaction not found.");
 
-        const transaction = transactionData.result;
-        const accountKeys = transaction.transaction.message.accountKeys;
+    const transaction = transactionData.result;
+    const accountKeys = transaction.transaction.message.accountKeys;
 
-        if (accountKeys.includes(MAIN_WALLET_ADDRESS)) {
-          const usdValue =
-            (Math.abs(transaction.meta.preBalances[0] - transaction.meta.postBalances[0]) / 1e9) *
-            solPrice;
+    if (accountKeys.includes(MAIN_WALLET_ADDRESS)) {
+      const usdValue =
+        (Math.abs(transaction.meta.preBalances[0] - transaction.meta.postBalances[0]) / 1e9) *
+        solPrice;
 
-          const zypherAmount = Math.floor(usdValue * 120);
+      const zypherAmount = Math.floor(usdValue * 120);
 
-          if (usdValue >= 1) {
-            zypherPoints += zypherAmount;
-            transactionHistory.unshift({
-              hash: transactionHash,
-              usdAmount: usdValue.toFixed(2),
-              zypherPoints: zypherAmount,
-              totalPoints: zypherPoints,
-              timestamp: Date.now(),
-            });
+      // Calculate points regardless of value
+      zypherPoints += zypherAmount;
+      transactionHistory.unshift({
+        hash: transactionHash,
+        usdAmount: usdValue.toFixed(2),
+        zypherPoints: zypherAmount,
+        totalPoints: zypherPoints,
+        timestamp: Date.now(),
+      });
 
-            saveData();
-            updateDashboard();
-            updateTransactionHistory();
+      saveData();
+      updateDashboard();
+      updateTransactionHistory();
 
-            displayTransaction(transaction, solPrice); // Display the transaction details
-          } else {
-            showError("Transaction value is less than $1. No points awarded.");
-          }
-        } else {
-          showError("No transaction found sent to the main wallet address.");
-        }
-      } catch (error) {
-        showError("An error occurred: " + error.message);
-      }
-    });
-
-    // Function to display errors
-    const showError = message => {
-      document.getElementById("transaction-details").innerHTML = `<p class='no-transaction'>${message}</p>`;
-    };
-
+      displayTransaction(transaction, solPrice); // Display the transaction details
+    } else {
+      showError("No transaction found sent to the main wallet address.");
+    }
+  } catch (error) {
+    showError("An error occurred: " + error.message);
+  }
+});
     // Initialize data on window load
     window.onload = loadData;
      function toggleMenu() {
