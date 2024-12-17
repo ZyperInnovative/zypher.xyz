@@ -1180,7 +1180,7 @@ document.getElementById("buy-btn").addEventListener("click", () => {
 
     // Copy to clipboard
     navigator.clipboard.writeText(depositAddress).then(() => {
-        showNotification("Deposit Address Copied Successfully. Send at least any amount of SOLANA then go to verify transaction.");
+        showNotification("Deposit Address Copied Successfully. Send at least ≥1 amount of SOLANA then go to verify transaction.");
     }).catch(err => {
         console.error("Failed to copy text: ", err);
     });
